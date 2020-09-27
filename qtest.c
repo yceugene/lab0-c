@@ -77,6 +77,9 @@ static bool do_size(int argc, char *argv[]);
 static bool do_sort(int argc, char *argv[]);
 static bool do_show(int argc, char *argv[]);
 
+static bool do_hello(int argc, char *argv[]);
+
+
 static void queue_init();
 
 static void console_init()
@@ -100,6 +103,7 @@ static void console_init()
     add_cmd("size", do_size,
             " [n]            | Compute queue size n times (default: n == 1)");
     add_cmd("show", do_show, "                | Show queue contents");
+    add_cmd("hello", do_hello, "                | Print hello message");
     add_param("length", &string_length, "Maximum length of displayed string",
               NULL);
     add_param("malloc", &fail_probability, "Malloc failure probability percent",
@@ -626,6 +630,11 @@ static bool do_show(int argc, char *argv[])
         return false;
     }
     return show_queue(0);
+}
+
+static bool do_hello(int argc, char *argv[])
+{
+    return (bool) printf("Hello, World\n");
 }
 
 /* Signal handlers */
